@@ -170,7 +170,7 @@
 <script>
         
 //this function for handling ticket count and price
-    function handleTicket(isIncrease, className){
+function handleTicket(isIncrease, className){
 
     const ticketInput = document.getElementById(className + "-ticket-count");
     const ticketNumber = parseInt(ticketInput.value);
@@ -184,11 +184,11 @@
     ticketInput.value = ticketCount;
 
     calculateTicketTotalPrice()
-    }
+}
 
 
     //this function for calculating total price of ticket
-    function calculateTicketTotalPrice(){
+function calculateTicketTotalPrice(){
 
     const firstClassTicket = getInput("firstClass-ticket-count");
     const economyClassTicket = getInput("economy-ticket-count");
@@ -201,15 +201,15 @@
 
     const totalTicketAmount = subTotalAmount + vat
     document.getElementById("total-amount").innerText = "$" + totalTicketAmount;
-    }
+}
 
 
     //This function for do not repeat code in get value of an id of ticket class
-    function getInput(id){
+function getInput(id){
     const ticketClassId = document.getElementById(id);
     const ticketClassIdValue = parseInt(ticketClassId.value);
     return ticketClassIdValue;
-    }
+}
 
     //This code is handle for confirm after booking ticket
     document.getElementById("booking-btn").addEventListener("click", function(){
