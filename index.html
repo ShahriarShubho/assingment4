@@ -83,7 +83,7 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p id="sub-total">$0</p>
+                        <p id="before-booking-sub-total">$0</p>
                     </div>
                 </div>
 
@@ -92,7 +92,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p id="vat-amount">$0</p>
+                        <p id="before-booking-vat-amount">$0</p>
                     </div>
                 </div>
                 <hr>
@@ -101,7 +101,7 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p id="total-amount">$0</p>
+                        <p id="before-booking-total-amount">$0</p>
                     </div>
                 </div>
             </div>
@@ -112,7 +112,7 @@
 
         <div id="booking-section" class="booking-form">
         
-            <h3>You have successfully purchase ticket</h3>
+            <h3>You purchase ticket History</h3> <br>
             <div class="calculations">
 
                 <div class="amount">
@@ -183,24 +183,27 @@ function handleTicket(isIncrease, className){
     }
     ticketInput.value = ticketCount;
 
-    calculateTicketTotalPrice()
+    calculateTicketTotalPrice("before-booking-")
 }
 
 
     //this function for calculating total price of ticket
-function calculateTicketTotalPrice(){
+function calculateTicketTotalPrice(amount){
 
     const firstClassTicket = getInput("firstClass-ticket-count");
     const economyClassTicket = getInput("economy-ticket-count");
 
+    document.getElementById("firstClass-seat").innerText = firstClassTicket;
+    document.getElementById("economy-seat").innerText = economyClassTicket;
+
     const subTotalAmount = firstClassTicket * 150 + economyClassTicket * 100;
-    document.getElementById("sub-total").innerText = "$" + subTotalAmount;
+    document.getElementById(amount + "sub-total").innerText = "$" + subTotalAmount;
 
     const vat = subTotalAmount * .10;
-    document.getElementById("vat-amount").innerText = "$" + vat;
+    document.getElementById(amount + "vat-amount").innerText = "$" + vat;
 
     const totalTicketAmount = subTotalAmount + vat
-    document.getElementById("total-amount").innerText = "$" + totalTicketAmount;
+    document.getElementById(amount + "total-amount").innerText = "$" + totalTicketAmount;
 }
 
 
@@ -216,28 +219,8 @@ function getInput(id){
     
     document.getElementById("form-section").style.display = "none";
     document.getElementById("booking-section").style.display = "block";
-    afterBookingCalculateTicketTotalPrice()
+    calculateTicketTotalPrice("after-booking-")
 })
-
-//This code is showing the result of after booking ticket
-function afterBookingCalculateTicketTotalPrice(){
-
-    let firstClassTicket = getInput("firstClass-ticket-count");
-    let economyClassTicket = getInput("economy-ticket-count");
-
-    document.getElementById("firstClass-seat").innerText = firstClassTicket;
-    document.getElementById("economy-seat").innerText = economyClassTicket;
-
-    const subTotalAmount = firstClassTicket * 150 + economyClassTicket * 100;
-    document.getElementById("after-booking-sub-total").innerText = "$" + subTotalAmount;
-
-    const vat = subTotalAmount * .10;
-    document.getElementById("after-booking-vat-amount").innerText = "$" + vat;
-
-    const totalTicketAmount = subTotalAmount + vat
-    document.getElementById("after-booking-total-amount").innerText = "$" + totalTicketAmount;
-
-}
 
 </script>
 
